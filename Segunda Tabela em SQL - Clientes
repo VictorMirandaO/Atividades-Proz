@@ -1,0 +1,23 @@
+DROP TABLE IF EXISTS Alunos;
+
+CREATE TABLE Clientes (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+  	name TEXT,
+  	age INTEGER,
+  	city TEXT,
+  	plano TEXT
+);
+
+INSERT INTO Clientes (name, age, city, plano) VALUES
+('Marcos Silva', 28, 'Belo Horizonte', 'Básico'),
+('Juliana Costa', 35, 'Contagem', 'Premium'),
+('Fernanda Souza', 22, 'Betim', 'Básico'),
+('Ricardo Mendes', 41, 'Nova Lima', 'Premium'),
+('Camila Rocha', 30, 'Ribeirão das Neves', 'Intermediário'),
+('Paulo Henrique', 26, 'Belo Horizonte', 'Premium'),
+('Amanda Lima', 38, 'Contagem', 'Básico'),
+('Lucas Martins', 45, 'Sabará', 'Premium'),
+('Patrícia Alves', 29, 'Betim', 'Intermediário'),
+('Bruno Ferreira', 33, 'Nova Lima', 'Básico');
+
+SELECT * FROM Clientes;
