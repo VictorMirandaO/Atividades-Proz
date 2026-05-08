@@ -1,1 +1,55 @@
+DROP TABLE IF EXISTS matriculas;
+DROP TABLE IF EXISTS cursos;
+DROP TABLE IF EXISTS alunos;
 
+CREATE TABLE alunos (
+    id_aluno INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(100),
+    data_nascimento DATE,
+    email VARCHAR(100)
+);
+
+CREATE TABLE cursos (
+    id_curso INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_curso VARCHAR(100),
+    numero_dias INTEGER
+);
+
+CREATE TABLE matriculas (
+    id_matricula INTEGER PRIMARY KEY AUTOINCREMENT,
+    data_matricula DATE,
+    status VARCHAR(30),
+    semestre VARCHAR(20),
+    id_aluno INT,
+    id_curso INT,
+    FOREIGN KEY (id_aluno) REFERENCES alunos(id_aluno),
+    FOREIGN KEY (id_curso) REFERENCES cursos(id_curso)
+);
+
+INSERT INTO alunos (nome, data_nascimento, email)
+VALUES
+('Victor Miranda', '2008-03-24', 'victorm@gmail.com'),
+('Eric Leonardo', '2008-02-12', 'ericleo@gmail.com'),
+('Ryan Vitor', '2008-06-21', 'ryanvitor@gmail.com'),
+('Antônio Fernandes', '2009-08-13', 'antoniofer12@gmail.com'),
+('Ronaldo Farias', '2007-07-21', 'ronalfarias2gmail.com');
+
+INSERT INTO cursos (nome_curso, numero_dias)
+VALUES
+('Administração', ABS(RANDOM() % 5) + 1),
+('Informática', ABS(RANDOM() % 5) + 1),
+('Ciber Segurança', ABS(RANDOM() % 5) + 1),
+('Programação', ABS(RANDOM() % 5) + 1),
+('Inteligência Artificial', ABS(RANDOM() % 5) + 1);
+
+INSERT INTO matriculas (data_matricula, status, semestre, id_aluno, id_curso)
+VALUES
+('2026-07-01', 'Ativa', '2026/01', 1, 1), 
+('2026-07-02', 'Ativa', '2026/01', 2, 2), 
+('2026-07-03', 'Pendente', '2026/01', 3, 3), 
+('2026-07-04', 'Cancelada', '2026/01', 4, 4), 
+('2026-07-05', 'Ativa', '2026/01', 5, 5);   
+
+SELECT * FROM alunos;
+SELECT * FROM cursos;
+SELECT * FROM matriculas;
