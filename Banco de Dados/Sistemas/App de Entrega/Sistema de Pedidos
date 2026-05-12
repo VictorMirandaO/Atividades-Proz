@@ -1,0 +1,55 @@
+DROP TABLE IF EXISTS pedidos;
+DROP TABLE IF EXISTS restaurantes;
+DROP TABLE IF EXISTS clientes;
+
+CREATE TABLE clientes (
+    id_cliente INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome VARCHAR(100),
+    telefone VARCHAR(20),
+    endereco VARCHAR(200)
+);
+
+CREATE TABLE restaurantes (
+    id_restaurante INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome_restaurante VARCHAR(100),
+    tipo_comida VARCHAR(50)
+);
+
+CREATE TABLE pedidos (
+    id_pedido INTEGER PRIMARY KEY AUTOINCREMENT,
+    data_pedido DATE,
+    status VARCHAR(30),
+    valor_total DECIMAL(10,2),
+    id_cliente INTEGER,
+    id_restaurante INTEGER,
+    FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_restaurante) REFERENCES restaurantes(id_restaurante)
+);
+
+INSERT INTO clientes (nome, telefone, endereco)
+VALUES
+('Erick Jacquin', '912345678', 'Rua das Vergonha da Profisson, 123'),
+('Priscila Ju', '987654321', 'Avenida See You, 45'),
+('Michael B. Jordan', '965432187', 'Praça dos Pecadores, 12'),
+('Ana Maria Braga', '932165487', 'Rua do Hmm, 88'),
+('Lewis Hamilton', '918273645', 'Avenida Ferrari Pipocando, 999');
+
+INSERT INTO restaurantes (nome_restaurante, tipo_comida)
+VALUES
+('Pizzaria ÍAÍA', 'Italiana'),
+('Sushi MIMI', 'Japonesa'),
+('Burger KINKIN', 'Fast Food'),
+('Cantina NANA', 'Comida Caseira'),
+('Vegan FRESCO', 'Vegana');
+
+INSERT INTO pedidos (data_pedido, status, valor_total, id_cliente, id_restaurante)
+VALUES
+('2026-05-10', 'Entregue', 45.50, 1, 1), 
+('2026-05-11', 'Em Preparação', 89.90, 2, 2), 
+('2026-05-12', 'A Caminho', 32.00, 3, 3), 
+('2026-05-12', 'Pendente', 25.00, 4, 4), 
+('2026-05-12', 'Cancelado', 55.00, 5, 5);   
+
+SELECT * FROM clientes;
+SELECT * FROM restaurantes;
+SELECT * FROM pedidos;
