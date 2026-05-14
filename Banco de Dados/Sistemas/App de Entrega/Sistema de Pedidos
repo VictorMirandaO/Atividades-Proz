@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS pedidos;
 DROP TABLE IF EXISTS restaurantes;
 DROP TABLE IF EXISTS clientes;
+DROP TABLE IF EXISTS entregadores;
+Drop TABLE IF EXISTS formas_pagamento;
 
 CREATE TABLE clientes (
     id_cliente INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,6 +28,21 @@ CREATE TABLE pedidos (
     FOREIGN KEY (id_restaurante) REFERENCES restaurantes(id_restaurante)
 );
 
+CREATE TABLE entregadores (
+  	id_entregador INTEGER PRIMARY KEY AUTOINCREMENT,
+  	nome VARCHAR(100),
+  	telefone_entregador VARCHAR(20),
+  	tipo_veiculo VARCHAR(10),
+  	veiculo VARCHAR(50),
+    placa CHAR(7)
+);
+
+CREATE TABLE formas_pagamento (
+  	id_pagamento INTEGER PRIMARY KEY AUTOINCREMENT,
+  	tipo_pagamento VARCHAR(50),
+  	pagamento VARCHAR(50)
+);
+
 INSERT INTO clientes (nome, telefone, endereco)
 VALUES
 ('Erick Jacquin', '912345678', 'Rua das Vergonha da Profisson, 123'),
@@ -48,8 +65,27 @@ VALUES
 ('2026-05-11', 'Em Preparação', 89.90, 2, 2), 
 ('2026-05-12', 'A Caminho', 32.00, 3, 3), 
 ('2026-05-12', 'Pendente', 25.00, 4, 4), 
-('2026-05-12', 'Cancelado', 55.00, 5, 5);   
+('2026-05-12', 'Cancelado', 55.00, 5, 5);
+
+INSERT INTO entregadores (nome, telefone_entregador, tipo_veiculo, veiculo, placa)
+VALUES
+('Toguro Sabuor', '967569847', 'Moto', 'BMW C 400 X', 'HT3562O'),
+('Aldair Bitelo', '937829065', 'Carro', 'NISSAN KICKS', 'UI76G57'),
+('Sergão dos Foguetes', '952678763', 'Carro', 'CHEVROLET CELTA', 'HS72J98'),
+('Renato Cariani', '976283675', 'Moto', 'HARLEY-DAVIDSON BREAKOUT', 'I7GU698'),
+('Julião', '963748725', 'Moto', 'HONDA CG 150', 'YT27U86');
+
+INSERT INTO formas_pagamento (tipo_pagamento, pagamento)
+VALUES
+('Pix', 'Efetuado'),
+('Cartão de credito', 'Pendente'),
+('Dinheiro', 'Pendente'),
+('Pix', 'Efetuado'),
+('Cartão de debito', 'Cancelado');
+
 
 SELECT * FROM clientes;
 SELECT * FROM restaurantes;
 SELECT * FROM pedidos;
+SELECT * FROM entregadores;
+SELECT * FROM formas_pagamento;
